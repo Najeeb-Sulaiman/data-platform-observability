@@ -19,5 +19,5 @@ storage:
 # --- RETENTION CONFIGURATION ---
 compactor:
   compaction:
-    block_retention: 48h # 2 days (Traces are heavy; we want to keep only for 48 hours)
+    block_retention: 48h # 2 days (Traces are heavy, we want to keep only for 48 hours)
     compacted_block_retention: 1h
