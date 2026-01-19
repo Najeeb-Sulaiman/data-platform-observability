@@ -14,62 +14,50 @@ services:
       - observability-network
     restart: unless-stopped
 
-  # loki:
-  #   image: grafana/loki:3.0.0
-  #   container_name: loki
-  #   ports:
-  #     - "3100:3100"
-  #   command: -config.file=/etc/loki/local-config.yaml
-  #   volumes:
-  #     - ./loki-config.yaml:/etc/loki/local-config.yaml
-  #     - loki_data:/loki        # Persists logs
-  #   networks:
-  #     - observability-network
-
-  # tempo:
-  #   image: grafana/tempo:latest
-  #   container_name: tempo
-  #   command: [ "-config.file=/etc/tempo.yaml" ]
-  #   ports:
-  #     - "3200:3200" # Tempo UI
-  #   volumes:
-  #     - ./tempo.yaml:/etc/tempo.yaml
-  #     - tempo_data:/var/tempo  # Persists traces
-  #   networks:
-  #     - observability-network
-
-  statsd-exporter:
-    image: prom/statsd-exporter:latest
-    container_name: statsd-exporter
-    volumes:
-      - ./statsd_mapping.yml:/etc/statsd-exporter/mapping.yml
-    command: ["--statsd.mapping-config=/etc/statsd-exporter/mapping.yml"]
+  loki:
+    image: grafana/loki:3.0.0
+    container_name: loki
     ports:
-      - "9125:9125/udp" # Airflow sends metrics here
-      - "9102:9102"      # Prometheus scrapes metrics here
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+      - loki_data:/loki        # Persists logs
     networks:
       - observability-network
-    restart: unless-stopped
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    ports:
+      - "3200:3200" # Tempo UI
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml
+      - tempo_data:/var/tempo  # Persists traces
+    networks:
+      - observability-network
 
   # --- TELEMETRY HUB ---
-  # otel-collector:
-  #   image: otel/opentelemetry-collector-contrib:latest
-  #   container_name: otel-collector
-  #   restart: unless-stopped
-  #   command: ["--config=/etc/otel-collector-config.yaml"]
-  #   volumes:
-  #     - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
-  #   ports:
-  #     - "4318:4318" # OTLP http receiver (Airflow pushes here)
-  #   networks:
-  #     - observability-network
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    restart: unless-stopped
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4318:4318" # OTLP http receiver (Airflow pushes here)
+    networks:
+      - observability-network
 
   # --- VISUALIZATION ---
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     volumes:
-      - grafana_airflow_data:/var/lib/grafana # Persists dashboards & datasources
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "3000:3000"
     environment:
@@ -81,8 +69,8 @@ services:
 
 volumes:
   prometheus_airflow_data:
-  # loki_data:
-  # tempo_data:
+  loki_data:
+  tempo_data:
   grafana_airflow_data:
 
 networks:
