@@ -21,14 +21,9 @@ x-airflow-common:
 
     # --- OPENTELEMETRY OBSERVABILITY SETTINGS ---
     # Metrics (Prometheus)
-    AIRFLOW__METRICS__STATSD_ON: 'True'
-    AIRFLOW__METRICS__STATSD_HOST: 'otel-collector'
-    AIRFLOW__METRICS__STATSD_PORT: 4318
-    AIRFLOW__METRICS__STATSD_PREFIX: 'airflow'
-    # AIRFLOW__METRICS__STATSD_ON: 'True'
-    # AIRFLOW__METRICS__STATSD_HOST: 'statsd-exporter'
-    # AIRFLOW__METRICS__STATSD_PORT: 9125
-    # AIRFLOW__METRICS__STATSD_PREFIX: 'airflow'
+    AIRFLOW__METRICS__OTEL_ON: 'true'
+    AIRFLOW__METRICS__OTEL_HOST: 'otel-collector'
+    AIRFLOW__METRICS__OTEL_PORT: 4318
     
     # Tracing (Tempo)
     AIRFLOW__TRACES__OTEL_ON: 'true'
