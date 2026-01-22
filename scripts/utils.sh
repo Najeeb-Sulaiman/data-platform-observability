@@ -23,3 +23,10 @@ log_warn() {
 log_error() {
   echo -e "${RED}[ERROR]${NC} $1"
 }
+
+check_command() {
+  command -v "$1" >/dev/null 2>&1 || {
+    log_error "$1 not found, confirm $1 status" 
+    exit 1
+  }
+}
