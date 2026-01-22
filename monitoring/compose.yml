@@ -51,6 +51,8 @@ services:
     networks:
       - observability-network
 
+# --- NODE EXPORTER ---
+
   # --- VISUALIZATION ---
   grafana:
     image: grafana/grafana:latest
