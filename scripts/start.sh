@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -euo pipefail
-source ./utils.sh
+source ./scripts/utils.sh
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -38,7 +38,7 @@ log_success "Monitoring stack containers started"
 
 log_info "Starting Airflow stack (Builds custom image from Dockerfile)"
 
-docker compose -f airflow/compose.yml up -d --build
+docker compose -f airflow/compose.yaml up -d --build
 
 log_success "Airflow stack containers started"
 
