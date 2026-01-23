@@ -83,3 +83,18 @@ To stop the entire Airflow and observability stack, run this command:
 ```bash
 ./scripts/down.sh
 ```
+
+## Dashboards
+All Airflow metrics dashboard is automated using a json file. Grafana auto-loads dashboards from this path:
+```bash
+monitoring/grafana/dashboards/
+```
+
+The Airflow metrics dashboard includes:
+- Scheduler health
+- DAG durations
+- Scheduling delays
+- Executor utilization
+- Pool starvation
+- Task throughput
+- OTEL-native metrics
