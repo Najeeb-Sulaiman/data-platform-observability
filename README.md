@@ -11,6 +11,7 @@ This project is designed for:
 
 ## Architecture
 
+![Architecture Diagram](airflow-o11y-architecture.png)
 
 ## Stack Components
 The project stacks consists of the following components:
