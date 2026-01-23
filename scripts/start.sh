@@ -10,6 +10,12 @@ check_command docker-compose || check_command docker compose
 
 log_success "All prerequisites satisfied"
 
+
+log_info "Creating custom docker network for observability stack"
+
+docker network inspect my_network >/dev/null 2>&1 || docker network create my_network
+
+
 # Start Monitoring Stack (LGTM)
 
 log_info "Starting monitoring stack (Prometheus, Loki, Tempo, Grafana)"
