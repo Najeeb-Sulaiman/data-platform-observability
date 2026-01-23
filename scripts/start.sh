@@ -3,6 +3,15 @@
 set -euo pipefail
 source ./utils.sh
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+source "$SCRIPT_DIR/utils.sh"
+
+log_info "Repository root resolved to: $REPO_ROOT"
+
+cd "$REPO_ROOT"
+
 log_info "Checking prerequisites(Docker and Docker Compose)"
 
 check_command docker
@@ -13,7 +22,7 @@ log_success "All prerequisites satisfied"
 
 log_info "Creating custom docker network for observability stack"
 
-docker network inspect my_network >/dev/null 2>&1 || docker network create my_network
+docker network inspect observability-network >/dev/null 2>&1 || docker network create observability-network
 
 
 # Start Monitoring Stack (LGTM)
