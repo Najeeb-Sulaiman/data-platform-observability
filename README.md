@@ -26,12 +26,12 @@ The project stacks consists of the following components:
 | Alerts           | Grafana + Slack         |
 
 ## Setup Instruction
-Follow the below guide to setup this project end-end.
+Follow the below guide to setup this project end-to-end.
 
 ### Prerequisites
 Install (If not already installed):
 - Docker
-- Docker Compose plugin
+- Docker Compose (This comes with Docker Desktop)
 - Bash
 
 Verify:
