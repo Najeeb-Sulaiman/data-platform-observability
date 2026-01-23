@@ -7,3 +7,20 @@ This project is designed for:
 - Community demos & workshops
 - Open-source reference stacks
 
+## Repository Layout
+
+
+## Stack Components
+The project stacks consists of the following components:
+
+| Layer            | Tool                    |
+| ---------------- | ----------------------- |
+| Platform         | Apache Airflow + Node   |
+| Metrics          | Prometheus              |
+| Logs             | Loki                    |
+| Traces           | Tempo                   |
+| Visualization    | Grafana                 |
+| Telemetry Router | OpenTelemetry Collector |
+| Alerts           | Grafana + Slack         |
+
+
