@@ -63,3 +63,23 @@ This will:
 4. Build & start Airflow
 5. Print service URLs
 
+### Service Endpoints
+| Service    | URL                                            |
+| ---------- | ---------------------------------------------- |
+| Airflow UI | [http://localhost:8080](http://localhost:8080) |
+| Grafana    | [http://localhost:3000](http://localhost:3000) |
+| Prometheus | [http://localhost:9090](http://localhost:9090) |
+| Loki       | [http://localhost:3100](http://localhost:3100) |
+| Tempo      | [http://localhost:3200](http://localhost:3200) |
+
+Grafana default credentials:
+- username: admin
+- password: admin
+
+Change password after first login.
+
+### Stopping the Stack
+To stop the entire Airflow and observability stack, run this command:
+```bash
+./scripts/down.sh
+```
