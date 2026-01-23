@@ -14,7 +14,7 @@ cd "$REPO_ROOT"
 
 log_info "Stopping Airflow and monitoring stacks"
 
-docker compose -f airflow/compose.yml down
+docker compose -f airflow/compose.yaml down
 docker compose -f monitoring/compose.yml down
 
 log_success "All stacks stopped"
