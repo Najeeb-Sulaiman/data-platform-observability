@@ -42,9 +42,6 @@ docker compose -f airflow/compose.yaml up -d --build
 
 log_success "Airflow stack containers started"
 
-
-log_success "All stacks are up and running"
-
 cat <<EOF
 
 ${GREEN} All stacks started successfully, verify with 'docker ps' command${NC}
