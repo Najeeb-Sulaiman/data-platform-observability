@@ -98,3 +98,28 @@ The Airflow metrics dashboard includes:
 - Pool starvation
 - Task throughput
 - OTEL-native metrics
+
+## Troubleshooting
+Below are some common troubleshooting you may come across.
+### No metrics in Grafana
+Check:
+```bash
+curl http://localhost:9090/api/v1/label/__name__/values | grep airflow
+```
+
+If empty:
+- Verify OTEL is enabled in Airflow
+- Check the otel-collector's container logs
+- Confirm Prometheus scrape config
+
+### Grafana dashboard shows “No Data”
+- Set variables to All
+- Check raw metric exists in the Explore TAB
+
+### Airflow running but no traces
+- Check Tempo logs
+- Verify OTLP endpoint
+- Confirm Airflow OTEL config
+
+## Contributing
+Pull requests are welcome!
